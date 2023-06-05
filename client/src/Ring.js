@@ -9,31 +9,29 @@ export default function Ring({ location, setCurrentLocation }) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  async function fetchLocationPokemon(url, setter) {
+  async function fetchLocationPokemon() {
     setIsLoading(true);
-    const rawLocation = await fetch(url);
-    const location = await rawLocation.json();
-    if (location.areas.length) {
-      const randAreaUrl = location.areas[randomIntFromInterval(0, location.areas.length - 1)].url;
+    const rawLocation = await fetch(location.url);
+    const locationData = await rawLocation.json();
+    if (locationData.areas.length) {
+      const randAreaUrl = locationData.areas[randomIntFromInterval(0, locationData.areas.length - 1)].url;
       const rawArea = await fetch(randAreaUrl);
       const area = await rawArea.json();
       const randPokemonUrl =
         area.pokemon_encounters[randomIntFromInterval(0, area.pokemon_encounters.length - 1)].pokemon.url;
       const randPokemonRaw = await fetch(randPokemonUrl);
       const randPokemon = await randPokemonRaw.json();
-      setter(randPokemon);
+      setAreaPokemon(randPokemon);
     }
     setIsLoading(false);
   }
 
   useEffect(() => {
-    fetchLocationPokemon(location.url, setAreaPokemon);
+    fetchLocationPokemon();
   }, []);
 
   if (isLoading) {
     return <h2>Loading...</h2>;
-  } else {
-    console.log(areaPokemon);
   }
 
   return (
