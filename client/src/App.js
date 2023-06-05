@@ -5,11 +5,17 @@ import Ring from "./Ring";
 
 function App() {
   const [currentLocation, setCurrentLocation] = useState(null);
+  const [pokemons, setPokemons] = useState();
 
   if (currentLocation)
     return (
       <div className="Ring">
-        <Ring location={currentLocation} setCurrentLocation={setCurrentLocation} />
+        <Ring
+          location={currentLocation}
+          setCurrentLocation={setCurrentLocation}
+          pokemons={pokemons}
+          setPokemons={setPokemons}
+        />
       </div>
     );
 

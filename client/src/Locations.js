@@ -26,7 +26,9 @@ export default function Locations({ setCurrentLocation }) {
           <div key={location.url}>
             <h2>{location.name}</h2>
             <p>
-              <button onClick={() => setCurrentLocation(location.name)}>Select location</button>
+              <button onClick={() => setCurrentLocation({ name: location.name, url: location.url })}>
+                Select location
+              </button>
             </p>
           </div>
         ))}
