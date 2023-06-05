@@ -1,25 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-export default function Locations() {
-    const [allLocations, setAllLocations] = useState(null)
+export default function Locations({ setCurrentLocation }) {
+  const [allLocations, setAllLocations] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        async function fetchData() {
-          const response = await fetch('https://pokeapi.co/api/v2/location');
-          const locations = await response.json();
-          setAllLocations(locations.results);
-        }
-        fetchData();
-      }, []);
-    
-    return (
-        <div>
-            {allLocations && allLocations.map(location => (
-                <div key={location.url}>
-                    <h2>{location.name}</h2>
-                    <p><button>Select location</button></p>
-                </div>
-            ))}
-        </div>
-    );
+  async function fetchData(url, setter) {
+    setIsLoading(true);
+    const response = await fetch(url);
+    const locations = await response.json();
+    setIsLoading(false);
+    setter(locations.results);
+  }
+
+  useEffect(() => {
+    fetchData("https://pokeapi.co/api/v2/location", setAllLocations);
+  }, []);
+
+  if (isLoading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h2>Choose location!</h2>
+      {allLocations &&
+        allLocations.map((location) => (
+          <div key={location.url}>
+            <h2>{location.name}</h2>
+            <p>
+              <button onClick={() => setCurrentLocation(location.name)}>Select location</button>
+            </p>
+          </div>
+        ))}
+    </div>
+  );
 }

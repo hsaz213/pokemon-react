@@ -1,11 +1,22 @@
-import './App.css';
-import Locations from './Locations';
+import "./App.css";
+import Locations from "./Locations";
+import React, { useState } from "react";
+import Ring from "./Ring";
 
 function App() {
+  const [currentLocation, setCurrentLocation] = useState(null);
+
+  if (currentLocation)
+    return (
+      <div className="Ring">
+        <Ring location={currentLocation} setCurrentLocation={setCurrentLocation} />
+      </div>
+    );
+
   return (
-    <div className="App">
-      <h1>Where do you want to go?</h1>
-      <Locations />
+    <div className="Locations">
+      <h1>Pokemon webapplication</h1>
+      <Locations setCurrentLocation={setCurrentLocation} />
     </div>
   );
 }
