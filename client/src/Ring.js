@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import PokemonBattle from "./BattleCalc";
 
-export default function Ring({ location, setCurrentLocation }) {
+export default function Ring({ location, setCurrentLocation, pokemons, setPokemons }) {
   const [areaPokemon, setAreaPokemon] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -42,7 +42,7 @@ export default function Ring({ location, setCurrentLocation }) {
           <h2>{location.name}</h2>
           <p>Your opponent is: {areaPokemon.name}</p>
           <img src={areaPokemon.sprites.front_default} alt="Pokemon_picture" />
-          <PokemonBattle />
+          <PokemonBattle setPokemons={setPokemons} myPokemonName={"pikachu"} enemyPokemonName={"magikarp"}/>
         </div>
       )}
       {!areaPokemon && <div>There is no enemy pokemon in {location.name}.</div>}
