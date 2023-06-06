@@ -12,7 +12,7 @@ function BattleCalc({ myPokemonName, enemyPokemonName }) {
       .catch((err) => console.error(err));
   }, [myPokemonName]);
 
-  useEffect(() => {
+  useEffect(() => { 
     fetch(`https://pokeapi.co/api/v2/pokemon/${enemyPokemonName}`)
       .then((response) => response.json())
       .then((data) => setEnemyPokemonData(data))
