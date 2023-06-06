@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 
-export default function Ring({ location, setCurrentLocation }) {
+export default function Ring({ location, setCurrentLocation, pokemons, setPokemons }) {
   const [areaPokemon, setAreaPokemon] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -33,6 +33,8 @@ export default function Ring({ location, setCurrentLocation }) {
   if (isLoading) {
     return <h2>Loading...</h2>;
   }
+
+  console.log(areaPokemon);
 
   return (
     <>

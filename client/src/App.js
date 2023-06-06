@@ -5,7 +5,11 @@ import Ring from "./Ring";
 
 function App() {
   const [currentLocation, setCurrentLocation] = useState(null);
-  const [pokemons, setPokemons] = useState();
+  const [pokemons, setPokemons] = useState([
+    "https://pokeapi.co/api/v2/pokemon/bulbasaur",
+    "https://pokeapi.co/api/v2/pokemon/charizard",
+    "https://pokeapi.co/api/v2/pokemon/poliwhirl",
+  ]);
 
   if (currentLocation)
     return (
