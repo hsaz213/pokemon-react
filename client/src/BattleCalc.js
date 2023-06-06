@@ -84,7 +84,7 @@ function PokemonBattle({ setPokemons, myPokemonName, enemyPokemonName, pokemons 
                 headers: {
                   'Content-Type': 'application/json',
                 },
-                body: enemyPokemonData,
+                body: JSON.stringify(enemyPokemonData),
             })
             .then(res => res.json())
             .then(data => {
@@ -96,7 +96,6 @@ function PokemonBattle({ setPokemons, myPokemonName, enemyPokemonName, pokemons 
             <div>
                 <h1>{winner.name} is the winner!</h1>
                 <img src={winner.sprites.front_default} alt="Pixel avatar" />
-                <p>{pokemons}</p>
             </div>
         )
     } else {
