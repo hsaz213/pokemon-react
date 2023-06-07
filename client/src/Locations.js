@@ -46,7 +46,7 @@ const locationImages = {
 };
 
 
-export default function Locations({ setCurrentLocation }) {
+export default function Locations({ onChoose }) {
   const [allLocations, setAllLocations] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
