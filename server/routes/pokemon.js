@@ -10,6 +10,7 @@ async function getAllPokemon(req, res) {
 async function addPokemonName(req, res) {
   const pokemonName = req.body;
   const resMessage = await addPokemon(pokemonName);
+  res.status(200);
   res.json(resMessage);
 }
 

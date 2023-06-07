@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function Locations({ setCurrentLocation }) {
+export default function Locations({ onChoose }) {
   const [allLocations, setAllLocations] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -26,9 +26,7 @@ export default function Locations({ setCurrentLocation }) {
           <div key={location.url}>
             <h2>{location.name}</h2>
             <p>
-              <button onClick={() => setCurrentLocation({ name: location.name, url: location.url })}>
-                Select location
-              </button>
+              <button onClick={() => onChoose({ name: location.name, url: location.url })}>Select location</button>
             </p>
           </div>
         ))}
