@@ -13,6 +13,6 @@ async function addPokemonName(req, res) {
   res.json(resMessage);
 }
 
-Router.route("/").get(getAllPokemon).post(addPokemonName);
+Router.route("/").get(getAllPokemon).put(addPokemonName);
 
 module.exports = Router;

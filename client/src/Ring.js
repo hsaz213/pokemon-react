@@ -5,6 +5,7 @@ import PokemonBattle from "./BattleCalc";
 export default function Ring({ location, setCurrentLocation, pokemons, setPokemons }) {
   const [areaPokemon, setAreaPokemon] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [myPokemon, setMyPokemon] = useState(null);
 
   function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -42,7 +43,7 @@ export default function Ring({ location, setCurrentLocation, pokemons, setPokemo
           <h2>{location.name}</h2>
           <p>Your opponent is: {areaPokemon.name}</p>
           <img src={areaPokemon.sprites.front_default} alt="Pokemon_picture" />
-          <PokemonBattle setPokemons={setPokemons} myPokemonName={"pikachu"} enemyPokemonName={"magikarp"}/>
+          <PokemonBattle setPokemons={setPokemons} myPokemonName={areaPokemon} enemyPokemonName={areaPokemon} />
         </div>
       )}
       {!areaPokemon && <div>There is no enemy pokemon in {location.name}.</div>}

@@ -15,17 +15,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.put('/api/mypokemons', async (req, res) => {
-  try {
-    const capturedPokemon = await req.body;
-    addPokemon(capturedPokemon);
-    res.status(200).send(`${capturedPokemon} captured`);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ message: 'Something went wrong' });
-  }
-});
-
 app.use("/pokemons", pokemons);
 
 app.listen(3001, () => console.log("Server is listening on port 3001"));
