@@ -1,0 +1,35 @@
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: 200px;
+  gap: 30px;
+  margin: 30px 30px 30px 30px;
+}
+
+.locations-grid h2 {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 20px 0;
+  margin: 0;
+  text-align: center;
+  position: absolute;
+}
+
+.locations-grid h2:hover {
+  background: rgba(255, 255, 0, 0.6);
+}
+
+.location-grid-item {
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.location-grid-item:hover {
+  transform: scale(
+    1.25
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
