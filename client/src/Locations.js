@@ -72,7 +72,7 @@ export default function Locations({ onChoose }) {
           allLocations.map((location) => (
             <div
               className='location-grid-item'
-              onClick={() => setCurrentLocation({ name: location.name, url: location.url })}
+              onClick={() => onChoose({ name: location.name, url: location.url })}
               key={location.url}
               style={{ backgroundImage: `url(${locationImages[location.name]})` }}
             >

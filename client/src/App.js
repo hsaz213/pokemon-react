@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="Locations">
       {/* <h1>Pokemon webapplication</h1> */}
-      <Locations setCurrentLocation={setCurrentLocation} />
+      <Locations onChoose={handleChoose} />
     </div>
   );
 }
