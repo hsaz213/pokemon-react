@@ -9,7 +9,13 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   function handleChoose(location) {
-    setCurrentLocation(location);
+      setCurrentLocation(location);
+  }
+
+  console.log(currentLocation);
+  
+  function handleCapture() {
+    setTimeout(() => setCurrentLocation(null), 2500);
   }
 
   if (!isPlaying) return <StartGame onStart={() => setIsPlaying(true)} />;
@@ -17,7 +23,7 @@ function App() {
   if (currentLocation) {
     return (
       <div className="Ring">
-        <Ring location={currentLocation} onBack={() => setCurrentLocation(null)} />
+        <Ring onCapture={handleCapture} onChoose={handleChoose} location={currentLocation} onBack={() => setCurrentLocation(null)} />
       </div>
     );
   }

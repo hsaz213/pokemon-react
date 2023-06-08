@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import PokemonBattle from "./BattleCalc";
 import Choose from "./Choose";
 
-export default function Ring({ location, onBack }) {
+export default function Ring({ location, onBack, onCapture }) {
   const [areaPokemon, setAreaPokemon] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [myPokemon, setMyPokemon] = useState(null);
@@ -52,10 +52,10 @@ export default function Ring({ location, onBack }) {
       {areaPokemon && pokemons && (
         <div className="toggleAreaPokemonAppear">
           <h2>{location.name}</h2>
-          <p>Wild {areaPokemon.name} appeared!</p>
+          <p>A wild {areaPokemon.name} appeared!</p>
           <img src={areaPokemon.sprites.front_default} alt="Pokemon_picture" />
           {!myPokemon && <Choose pokemons={pokemons} onChoose={(pokemon) => setMyPokemon(pokemon)} />}
-          {myPokemon && <PokemonBattle myPokemon={myPokemon} enemyPokemon={areaPokemon} />}
+          {myPokemon && <PokemonBattle onCapture={onCapture} myPokemon={myPokemon} enemyPokemon={areaPokemon} />}
         </div>
       )}
       {!areaPokemon && (

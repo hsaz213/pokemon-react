@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
-import Pokeball from "./Pokeball";
+import React, { useState } from "react";
+import Pokeball from './Pokeball';
 
-function PokemonBattle({ myPokemon, enemyPokemon, pokemons }) {
+function PokemonBattle({ myPokemon, enemyPokemon, onCapture }) {
   const [myPokemonHP, setMyPokemonHP] = useState(myPokemon.stats[0].base_stat);
   const [enemyPokemonHP, setEnemyPokemonHP] = useState(enemyPokemon.stats[0].base_stat);
   const [turn, setTurn] = useState("mine");
   const [winner, setWinner] = useState(null);
-  const [isCaptured, setIsCaptured] = useState(false);
 
   const calculateDamage = (attackerAttack, defenderDefense) => {
     const Z = Math.random() * (255 - 217) + 217;
@@ -32,7 +31,6 @@ function PokemonBattle({ myPokemon, enemyPokemon, pokemons }) {
   };
 
   function handleClick() {
-    console.log(enemyPokemon);
     fetch("http://localhost:3001/pokemons", {
       method: "PUT",
       headers: {
@@ -45,20 +43,20 @@ function PokemonBattle({ myPokemon, enemyPokemon, pokemons }) {
         console.log(data.message);
       })
       .catch((error) => console.log(error));
+    onCapture();
   }
 
-  if (myPokemon && enemyPokemon && !winner) {
+  if (!winner) {
     const attacker = turn === "mine" ? myPokemon : enemyPokemon;
     const defender = turn === "mine" ? enemyPokemon : myPokemon;
 
     const attackerHP = turn === "mine" ? myPokemonHP : enemyPokemonHP;
     const defenderHP = turn === "mine" ? enemyPokemonHP : myPokemonHP;
 
-    if (enemyPokemonHP <= 0 && !isCaptured) {
-      setIsCaptured(true);
+    if (enemyPokemonHP <= 0) {
       setWinner(myPokemon);
     } else if (myPokemonHP <= 0) {
-      setWinner(enemyPokemon);
+      setWinner(enemyPokemon); 
     }
 
     return (
@@ -78,7 +76,7 @@ function PokemonBattle({ myPokemon, enemyPokemon, pokemons }) {
       </div>
     );
     // match over, player win
-  } else if (myPokemon && enemyPokemon && winner === myPokemon) {
+  } else if (winner === myPokemon) {
     return (
       <>
         <div>
