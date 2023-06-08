@@ -2,9 +2,11 @@ import "./App.css";
 import Locations from "./Locations";
 import React, { useState } from "react";
 import Ring from "./Ring";
+import StartGame from "./StartGame";
 
 function App() {
   const [currentLocation, setCurrentLocation] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   function handleChoose(location) {
       setCurrentLocation(location);
@@ -15,6 +17,8 @@ function App() {
   function handleCapture() {
     setTimeout(() => setCurrentLocation(null), 2500);
   }
+
+  if (!isPlaying) return <StartGame onStart={() => setIsPlaying(true)} />;
 
   if (currentLocation) {
     return (

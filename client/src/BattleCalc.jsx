@@ -82,7 +82,10 @@ function PokemonBattle({ myPokemon, enemyPokemon, onCapture }) {
         <div>
           <h1>{winner.name} is the winner!</h1>
           <h2>Use the Pokeball to catch {enemyPokemon.name}</h2>
-          <p className='pokeBallP' onClick={handleClick}> <Pokeball /> </p>
+          <p className="pokeBallP" onClick={handleClick}>
+            {" "}
+            <Pokeball />{" "}
+          </p>
           {/* <button onClick={handleClick}>Add to the collection!</button> */}
           {/* <img src={winner.sprites.front_default} alt="Pixel avatar" /> */}
         </div>

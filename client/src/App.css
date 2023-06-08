@@ -69,6 +69,7 @@ button {
   top: 0;
   left: 0;
   background-color: orange;
+  padding: 0.3rem;
 }
 
 button:hover {
@@ -86,4 +87,37 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.noEnemyPokemon {
+  margin: 3rem;
+}
+.noEnemyPokemon h3 {
+  margin: 3rem;
+}
+.noEnemyPokemon span {
+  padding: 0.1rem;
+  color: grey;
+}
+
+.playButton {
+  padding: 2rem;
+}
+
+.startGame {
+  margin-top: 5rem;
+  font-size: x-large;
+  display: flex;
+  height: 50vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.startGame div {
+  text-align: center;
+}
+
+.startGame button {
+  margin: 2rem;
+  font-size: xx-large;
 }
