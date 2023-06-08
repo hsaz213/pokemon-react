@@ -1,0 +1,22 @@
+.pokemon-choice-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: 200px;
+  gap: 30px;
+  margin: 30px 130px 30px 130px;
+}
+
+.pokemon-choice {
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.pokemon-choice:hover {
+  color: yellow;
+  transform: scale(
+    1.25
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}

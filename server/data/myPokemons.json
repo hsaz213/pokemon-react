@@ -2,6 +2,15 @@
   "pokemonNames": [
     "https://pokeapi.co/api/v2/pokemon/bulbasaur",
     "https://pokeapi.co/api/v2/pokemon/charizard",
-    "https://pokeapi.co/api/v2/pokemon/poliwhirl"
+    "https://pokeapi.co/api/v2/pokemon/poliwhirl",
+    "https://pokeapi.co/api/v2/pokemon/unown",
+    "https://pokeapi.co/api/v2/pokemon/togepi",
+    "https://pokeapi.co/api/v2/pokemon/shellos",
+    "https://pokeapi.co/api/v2/pokemon/pelipper",
+    "https://pokeapi.co/api/v2/pokemon/lumineon",
+    "https://pokeapi.co/api/v2/pokemon/bidoof",
+    "https://pokeapi.co/api/v2/pokemon/buizel",
+    "https://pokeapi.co/api/v2/pokemon/lumineon",
+    "https://pokeapi.co/api/v2/pokemon/tentacool"
   ]
 }

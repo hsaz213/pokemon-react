@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import Pokeball from './Pokeball';
 
-function PokemonBattle({ myPokemon, enemyPokemon, pokemons }) {
+function PokemonBattle({ myPokemon, enemyPokemon, onCapture }) {
   const [myPokemonHP, setMyPokemonHP] = useState(myPokemon.stats[0].base_stat);
   const [enemyPokemonHP, setEnemyPokemonHP] = useState(enemyPokemon.stats[0].base_stat);
   const [turn, setTurn] = useState("mine");
   const [winner, setWinner] = useState(null);
-  const [isCaptured, setIsCaptured] = useState(false);
 
   const calculateDamage = (attackerAttack, defenderDefense) => {
     const Z = Math.random() * (255 - 217) + 217;
@@ -31,7 +31,6 @@ function PokemonBattle({ myPokemon, enemyPokemon, pokemons }) {
   };
 
   function handleClick() {
-    console.log(enemyPokemon);
     fetch("http://localhost:3001/pokemons", {
       method: "PUT",
       headers: {
@@ -44,23 +43,24 @@ function PokemonBattle({ myPokemon, enemyPokemon, pokemons }) {
         console.log(data.message);
       })
       .catch((error) => console.log(error));
+    onCapture();
   }
 
-  if (myPokemon && enemyPokemon && !winner) {
+  if (!winner) {
     const attacker = turn === "mine" ? myPokemon : enemyPokemon;
     const defender = turn === "mine" ? enemyPokemon : myPokemon;
 
     const attackerHP = turn === "mine" ? myPokemonHP : enemyPokemonHP;
     const defenderHP = turn === "mine" ? enemyPokemonHP : myPokemonHP;
 
-    if (enemyPokemonHP <= 0 && !isCaptured) {
-      setIsCaptured(true);
+    if (enemyPokemonHP <= 0) {
       setWinner(myPokemon);
     } else if (myPokemonHP <= 0) {
-      setWinner(enemyPokemon);
+      setWinner(enemyPokemon); 
     }
 
     return (
+      // attack turns
       <div>
         <h2>{turn === "mine" ? `${myPokemon.name} attacks!` : `${enemyPokemon.name} attacks!`}</h2>
         <button onClick={handleTurn}>Next Turn</button>
@@ -68,23 +68,37 @@ function PokemonBattle({ myPokemon, enemyPokemon, pokemons }) {
           Attacker: {attacker.name} (HP: {attackerHP})
         </h3>
         <img src={attacker.sprites.front_default} alt="Pixel avatar" />
-        {/* <img src={attacker.sprites["official-artwork"].front_default} alt="Large avatar" /> */}
 
         <h3>
           Defender: {defender.name} (HP: {defenderHP})
         </h3>
         <img src={defender.sprites.front_default} alt="Pixel avatar" />
-        {/* <img src={defender.sprites["official-artwork"].front_default} alt="Large avatar" /> */}
       </div>
     );
-  } else if (myPokemon && enemyPokemon && winner) {
+    // match over, player win
+  } else if (winner === myPokemon) {
     return (
       <>
         <div>
           <h1>{winner.name} is the winner!</h1>
-          <img src={winner.sprites.front_default} alt="Pixel avatar" />
+          <h2>Use the Pokeball to catch {enemyPokemon.name}</h2>
+          <p className='pokeBallP' onClick={handleClick}> <Pokeball /> </p>
+          {/* <button onClick={handleClick}>Add to the collection!</button> */}
+          {/* <img src={winner.sprites.front_default} alt="Pixel avatar" /> */}
         </div>
-        {winner === myPokemon && <button onClick={handleClick}>Add to the collection!</button>}
+      </>
+    );
+    // match over, wild pokemon win
+  } else if (myPokemon && enemyPokemon && winner === enemyPokemon) {
+    return (
+      <>
+        <div>
+          <h1>{winner.name} wins!</h1>
+
+          <h2>Click the Back button to resume your journey.</h2>
+          {/* <img src={winner.sprites.front_default} alt="Pixel avatar" /> */}
+        </div>
+        {/* {winner === enemyPokemon && <button onClick={handleClick}>Add to the collection!</button>} */}
       </>
     );
   } else {

@@ -1,19 +1,25 @@
 import "./App.css";
 import Locations from "./Locations";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Ring from "./Ring";
 
 function App() {
   const [currentLocation, setCurrentLocation] = useState(null);
 
   function handleChoose(location) {
-    setCurrentLocation(location);
+      setCurrentLocation(location);
+  }
+
+  console.log(currentLocation);
+  
+  function handleCapture() {
+    setTimeout(() => setCurrentLocation(null), 2500);
   }
 
   if (currentLocation) {
     return (
       <div className="Ring">
-        <Ring location={currentLocation} onBack={() => setCurrentLocation(null)} />
+        <Ring onCapture={handleCapture} onChoose={handleChoose} location={currentLocation} onBack={() => setCurrentLocation(null)} />
       </div>
     );
   }

@@ -56,3 +56,34 @@ body {
   color: white;
   font-size: smaller;
 }
+
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  cursor: pointer;
+  font-size: large;
+  top: 0;
+  left: 0;
+  background-color: orange;
+}
+
+button:hover {
+  color: black;
+  background-color: white;
+}
+
+.back-btn {
+  background-color: gray;
+  position: absolute;
+  /* margin-left: 100px; */
+}
+
+.pokeBallP {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
