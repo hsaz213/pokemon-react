@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import './Choose.css'
 
 export default function Choose({ pokemons: pokemonUrls, onChoose }) {
   const [pokemonData, setPokemonData] = useState([]);
@@ -21,14 +22,21 @@ export default function Choose({ pokemons: pokemonUrls, onChoose }) {
 
   if (pokemonData) {
     return (
-      <div>
+      <>
         <h2>Choose your pokemon!</h2>
-        {pokemonData.map((pokemon, index) => (
-          <button key={index} onClick={() => onChoose(pokemon)}>
-            {pokemon.name}
-          </button>
-        ))}
-      </div>
+        <div className='pokemon-choice-container'>
+          {pokemonData.map((pokemon, index) => (
+            <div className='pokemon-choice'
+              key={index}
+              onClick={() => onChoose(pokemon)}>
+              <div className='pokemon-choice'>
+                <img src={pokemon.sprites.front_default} alt="Pixel avatar" />
+                <p>{pokemon.name}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </>
     );
   }
 }
