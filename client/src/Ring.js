@@ -58,10 +58,15 @@ export default function Ring({ location, onBack }) {
           {myPokemon && <PokemonBattle myPokemon={myPokemon} enemyPokemon={areaPokemon} />}
         </div>
       )}
-      {!areaPokemon && <div>There is no enemy pokemon in {location.name}.</div>}
-      <button
-        className="back-btn"
-        onClick={() => onBack()}>
+      {!areaPokemon && (
+        <div className="noEnemyPokemon">
+          <h2>There is no enemy pokemon in {location.name}.</h2>
+          <h3>
+            Click <span>Back</span> button to choose another place!
+          </h3>
+        </div>
+      )}
+      <button className="back-btn" onClick={() => onBack()}>
         Back
       </button>
     </>
