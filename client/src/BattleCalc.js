@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function PokemonBattle({ myPokemon, enemyPokemon, pokemons }) {
   const [myPokemonHP, setMyPokemonHP] = useState(myPokemon.stats[0].base_stat);
   const [enemyPokemonHP, setEnemyPokemonHP] = useState(enemyPokemon.stats[0].base_stat);
   const [turn, setTurn] = useState("mine");
   const [winner, setWinner] = useState(null);
-  const [isCaptured, setIsCaptured] = useState(false);
 
   const calculateDamage = (attackerAttack, defenderDefense) => {
     const Z = Math.random() * (255 - 217) + 217;
@@ -46,15 +45,14 @@ function PokemonBattle({ myPokemon, enemyPokemon, pokemons }) {
       .catch((error) => console.log(error));
   }
 
-  if (myPokemon && enemyPokemon && !winner) {
+  if (!winner) {
     const attacker = turn === "mine" ? myPokemon : enemyPokemon;
     const defender = turn === "mine" ? enemyPokemon : myPokemon;
 
     const attackerHP = turn === "mine" ? myPokemonHP : enemyPokemonHP;
     const defenderHP = turn === "mine" ? enemyPokemonHP : myPokemonHP;
 
-    if (enemyPokemonHP <= 0 && !isCaptured) {
-      setIsCaptured(true);
+    if (enemyPokemonHP <= 0) {
       setWinner(myPokemon);
     } else if (myPokemonHP <= 0) {
       setWinner(enemyPokemon);
@@ -77,7 +75,7 @@ function PokemonBattle({ myPokemon, enemyPokemon, pokemons }) {
         {/* <img src={defender.sprites["official-artwork"].front_default} alt="Large avatar" /> */}
       </div>
     );
-  } else if (myPokemon && enemyPokemon && winner) {
+  } else if (winner) {
     return (
       <>
         <div>
