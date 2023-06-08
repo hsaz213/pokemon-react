@@ -9,11 +9,11 @@ export default function StartGame({ onStart }) {
           Pokemon Annihilator 3000<sup>®</sup>
         </h1>
         <button className="playButton" onClick={onStart}>
-          Start your bloody adventure! :)
+          Start your adventure!
         </button>
-        <h2 className="teamName">
+        <h3 className="teamName">
           A Geekachu<sup>™</sup> production
-        </h2>
+        </h3>
         <img src={gigachu} className="gigachu" alt="Gigachu" />
       </div>
     </div>

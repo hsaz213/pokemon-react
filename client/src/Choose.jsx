@@ -23,7 +23,7 @@ export default function Choose({ pokemons: pokemonUrls, onChoose }) {
   if (pokemonData) {
     return (
       <>
-        <h2>Choose your pokemon!</h2>
+        <h2 className='choose'>Choose your pokemon!</h2>
         <div className='pokemon-choice-container'>
           {pokemonData.map((pokemon, index) => (
             <div className='pokemon-choice'
