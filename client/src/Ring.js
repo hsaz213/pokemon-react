@@ -51,11 +51,19 @@ export default function Ring({ location, onBack, onCapture }) {
     <>
       {areaPokemon && pokemons && (
         <div className="toggleAreaPokemonAppear">
-          <h2>{location.name}</h2>
-          <p>A wild {areaPokemon.name} appeared!</p>
-          <img src={areaPokemon.sprites.front_default} alt="Pokemon_picture" />
+          {!myPokemon && (
+            <>
+              <h2>{location.name}</h2>
+              <p>A wild {areaPokemon.name} appeared!</p>
+              <img src={areaPokemon.sprites.front_default} alt="Pokemon_picture" />
+            </>
+          )}
           {!myPokemon && <Choose pokemons={pokemons} onChoose={(pokemon) => setMyPokemon(pokemon)} />}
-          {myPokemon && <PokemonBattle onCapture={onCapture} myPokemon={myPokemon} enemyPokemon={areaPokemon} />}
+          {myPokemon && (
+            <>
+              <PokemonBattle onCapture={onCapture} myPokemon={myPokemon} enemyPokemon={areaPokemon} />
+            </>
+          )}
         </div>
       )}
       {!areaPokemon && (

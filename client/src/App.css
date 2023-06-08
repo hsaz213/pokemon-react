@@ -131,3 +131,17 @@ button:hover {
   height: 20px;
   width: 20px;
 }
+
+.battleField {
+  font-size: x-large;
+  margin: 5rem;
+}
+
+.won {
+  margin: 7rem;
+}
+
+.beBigger {
+  height: 200px;
+  width: 200px;
+}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Pokeball from './Pokeball';
+import Pokeball from "./Pokeball";
 
 function PokemonBattle({ myPokemon, enemyPokemon, onCapture }) {
   const [myPokemonHP, setMyPokemonHP] = useState(myPokemon.stats[0].base_stat);
@@ -56,12 +56,13 @@ function PokemonBattle({ myPokemon, enemyPokemon, onCapture }) {
     if (enemyPokemonHP <= 0) {
       setWinner(myPokemon);
     } else if (myPokemonHP <= 0) {
-      setWinner(enemyPokemon); 
+      setWinner(enemyPokemon);
     }
 
     return (
       // attack turns
-      <div>
+      <div className="battleField">
+        <h1>Fight</h1>
         <h2>{turn === "mine" ? `${myPokemon.name} attacks!` : `${enemyPokemon.name} attacks!`}</h2>
         <button onClick={handleTurn}>Next Turn</button>
         <h3>
@@ -79,15 +80,13 @@ function PokemonBattle({ myPokemon, enemyPokemon, onCapture }) {
   } else if (winner === myPokemon) {
     return (
       <>
-        <div>
+        <div className="won">
+          <img src={enemyPokemon.sprites.front_default} alt="Pokemon_picture" className="beBigger" />
           <h1>{winner.name} is the winner!</h1>
           <h2>Use the Pokeball to catch {enemyPokemon.name}</h2>
           <p className="pokeBallP" onClick={handleClick}>
-            {" "}
-            <Pokeball />{" "}
+            <Pokeball enemyPokemon={enemyPokemon} />
           </p>
-          {/* <button onClick={handleClick}>Add to the collection!</button> */}
-          {/* <img src={winner.sprites.front_default} alt="Pixel avatar" /> */}
         </div>
       </>
     );
