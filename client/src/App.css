@@ -134,7 +134,6 @@ button:hover {
 
 .battleField {
   font-size: x-large;
-  margin: 5rem;
 }
 
 .won {
@@ -142,6 +141,10 @@ button:hover {
 }
 
 .beBigger {
-  height: 200px;
-  width: 200px;
+  height: 16%;
+  width: 16%;
+}
+
+.Ring {
+  margin: 5rem;
 }

@@ -55,7 +55,7 @@ export default function Ring({ location, onBack, onCapture }) {
             <>
               <h2>{location.name}</h2>
               <p>A wild {areaPokemon.name} appeared!</p>
-              <img src={areaPokemon.sprites.front_default} alt="Pokemon_picture" />
+              <img src={areaPokemon.sprites.front_default} alt="Pokemon_picture" className="beBigger" />
             </>
           )}
           {!myPokemon && <Choose pokemons={pokemons} onChoose={(pokemon) => setMyPokemon(pokemon)} />}
