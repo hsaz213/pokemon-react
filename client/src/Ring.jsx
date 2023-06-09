@@ -1,7 +1,7 @@
 import "./App.css";
 import "./Ring.css";
 import React, { useState, useEffect } from "react";
-import PokemonBattle from "./BattleCalc";
+import PokemonBattle from "./PokemonBattle";
 import Choose from "./Choose";
 
 export default function Ring({ location, locationImg, onBack, onCapture }) {
