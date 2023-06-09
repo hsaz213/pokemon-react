@@ -1,22 +1,23 @@
 import "./App.css";
+import "./Ring.css";
 import React, { useState, useEffect } from "react";
 import PokemonBattle from "./BattleCalc";
 import Choose from "./Choose";
 
-export default function Ring({ location, onBack, onCapture }) {
+export default function Ring({ location, locationImg, onBack, onCapture }) {
   const [areaPokemon, setAreaPokemon] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [myPokemon, setMyPokemon] = useState(null);
   const [pokemons, setPokemons] = useState(null);
 
-  async function fethMyPokemons() {
+  async function fetchMyPokemons() {
     const rawPokemons = await fetch("http://localhost:3001/pokemons");
     const myPokemons = await rawPokemons.json();
     setPokemons(myPokemons);
   }
 
   useEffect(() => {
-    fethMyPokemons();
+    fetchMyPokemons();
   }, []);
 
   function randomIntFromInterval(min, max) {
@@ -47,21 +48,22 @@ export default function Ring({ location, onBack, onCapture }) {
     return <h2>Loading...</h2>;
   }
 
+  // console.log(locationImg)
   return (
     <>
       {areaPokemon && pokemons && (
         <div className="toggleAreaPokemonAppear">
           {!myPokemon && (
-            <>
-              <h2>{location.name}</h2>
+            <div className="wild-pokemon-container" style={{ backgroundImage: `url(${locationImg})`, backgroundSize: 'cover' }}>
+              {/* <h2>{location.name}</h2> */}
               <p>A wild {areaPokemon.name} appeared!</p>
               <img src={areaPokemon.sprites.front_default} alt="Pokemon_picture" className="beBigger" />
-            </>
+            </div>
           )}
           {!myPokemon && <Choose pokemons={pokemons} onChoose={(pokemon) => setMyPokemon(pokemon)} />}
           {myPokemon && (
             <>
-              <PokemonBattle onCapture={onCapture} myPokemon={myPokemon} enemyPokemon={areaPokemon} />
+              <PokemonBattle onCapture={onCapture} myPokemon={myPokemon} enemyPokemon={areaPokemon} locationImg={location.img} />
             </>
           )}
         </div>
@@ -70,7 +72,7 @@ export default function Ring({ location, onBack, onCapture }) {
         <div className="noEnemyPokemon">
           <h2>There is no enemy pokemon in {location.name}.</h2>
           <h3>
-            Click <span>Back</span> button to choose another place!
+            Click the <span>Back</span> button to wander elsewhere!
           </h3>
         </div>
       )}

@@ -5,7 +5,7 @@ export default function Pokeball({ enemyPokemon }) {
   const [selected, setSelected] = useState(false);
 
   const handleClick = () => {
-    setSelected(!selected);
+      setSelected(!selected);
   };
 
   return (

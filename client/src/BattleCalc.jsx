@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Pokeball from "./Pokeball";
 
-function PokemonBattle({ myPokemon, enemyPokemon, onCapture }) {
+function PokemonBattle({ myPokemon, enemyPokemon, onCapture, locationImg }) {
   const [myPokemonHP, setMyPokemonHP] = useState(myPokemon.stats[0].base_stat);
   const [enemyPokemonHP, setEnemyPokemonHP] = useState(enemyPokemon.stats[0].base_stat);
   const [turn, setTurn] = useState("mine");
@@ -61,10 +61,11 @@ function PokemonBattle({ myPokemon, enemyPokemon, onCapture }) {
 
     return (
       // attack turns
-      <div className="battleField">
-        <h1>Fight</h1>
+      <>
+      <div className="battleField" style={{ backgroundImage: `url(${locationImg})`, backgroundSize: 'cover' }}>
+
+        {/* <h1>Fight</h1> */}
         <h2>{turn === "mine" ? `${myPokemon.name} attacks!` : `${enemyPokemon.name} attacks!`}</h2>
-        <button onClick={handleTurn}>Next Turn</button>
         <h3>
           Attacker: {attacker.name} (HP: {attackerHP})
         </h3>
@@ -75,6 +76,7 @@ function PokemonBattle({ myPokemon, enemyPokemon, onCapture }) {
         </h3>
         <img src={defender.sprites.front_default} alt="Pixel avatar" />
       </div>
+        <button className='next-btn' onClick={handleTurn}>Next Turn</button></>
     );
     // match over, player win
   } else if (winner === myPokemon) {
@@ -97,7 +99,7 @@ function PokemonBattle({ myPokemon, enemyPokemon, onCapture }) {
         <div>
           <h1>{winner.name} wins!</h1>
 
-          <h2>Click the Back button to resume your journey.</h2>
+          <h2>Click the Back button to continue your adventure.</h2>
           {/* <img src={winner.sprites.front_default} alt="Pixel avatar" /> */}
         </div>
         {/* {winner === enemyPokemon && <button onClick={handleClick}>Add to the collection!</button>} */}

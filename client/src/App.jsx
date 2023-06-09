@@ -15,7 +15,7 @@ function App() {
   console.log(currentLocation);
   
   function handleCapture() {
-    setTimeout(() => setCurrentLocation(null), 2500);
+    setTimeout(() => setCurrentLocation(null), 4500);
   }
 
   if (!isPlaying) return <StartGame onStart={() => setIsPlaying(true)} />;
